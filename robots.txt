@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ahmadaslam0904.github.io/rana-ahmad-portfolio/sitemap.xml

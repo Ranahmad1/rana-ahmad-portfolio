@@ -1,0 +1,32 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#101a2e" />
+      <stop offset="100%" stop-color="#060a14" />
+    </linearGradient>
+    <linearGradient id="a-grad" x1="30" y1="140" x2="150" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2dd4bf" />
+      <stop offset="100%" stop-color="#d9a441" />
+    </linearGradient>
+    <radialGradient id="glow-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="180" height="180" rx="40" fill="url(#bg-grad)" />
+  <rect x="3" y="3" width="174" height="174" rx="37" fill="none" stroke="#2dd4bf" stroke-opacity="0.35" stroke-width="2" />
+
+  <circle cx="90" cy="90" r="58" fill="url(#glow-grad)">
+    <animate attributeName="r" values="52;62;52" dur="2.6s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="2.6s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- "A" monogram, built so it reads cleanly at small tab sizes -->
+  <path d="M90 40 L136 138 H116 L90 82 L64 138 H44 Z" fill="url(#a-grad)" />
+  <rect x="70" y="104" width="40" height="13" rx="3" fill="#060a14" />
+
+  <circle cx="90" cy="40" r="5" fill="#d9a441">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="2.6s" repeatCount="indefinite" />
+  </circle>
+</svg>

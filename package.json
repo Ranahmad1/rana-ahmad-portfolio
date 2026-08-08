@@ -1,0 +1,13 @@
+{
+  "name": "rana-ahmad-portfolio-static",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static HTML/CSS/JS portfolio for Rana Ahmad. No build step required — deploy directly to GitHub Pages or Vercel.",
+  "scripts": {
+    "dev": "serve -l 3000 .",
+    "start": "serve -l 3000 ."
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
