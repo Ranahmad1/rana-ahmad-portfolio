@@ -5,9 +5,12 @@
   "description": "Static HTML/CSS/JS portfolio for Rana Ahmad. No build step required — deploy directly to GitHub Pages or Vercel.",
   "scripts": {
     "dev": "serve -l 3000 .",
-    "start": "serve -l 3000 ."
+    "start": "serve -l 3000 .",
+    "test": "jest"
   },
   "devDependencies": {
+    "jest": "^30.5.1",
+    "jest-environment-jsdom": "^30.5.1",
     "serve": "^14.2.4"
   }
 }
