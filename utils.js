@@ -6,13 +6,17 @@
 /**
  * Escape HTML special characters to prevent XSS attacks
  * Used whenever user input or untrusted data is rendered as HTML
+ * Pure string replacement — no DOM dependency, works in Node.js and browser
  * @param {string} s - The string to escape
  * @returns {string} - The escaped HTML-safe string
  */
 function escapeHtml(s) {
-  var d = document.createElement('div');
-  d.textContent = s == null ? '' : String(s);
-  return d.innerHTML;
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 /**
@@ -53,8 +57,6 @@ function findBestIntent(userText, knowledgeBase) {
   var best = null, bestScore = 0;
 
   // Pass 1: exact word-boundary matches, weighted by phrase specificity
-  // (a 3-word keyword phrase matching is a much stronger signal than a
-  // single common word, so it's worth more toward the intent's score).
   knowledgeBase.forEach(function (intent) {
     var score = 0;
     intent.keywords.forEach(function (kw) {
@@ -65,8 +67,7 @@ function findBestIntent(userText, knowledgeBase) {
   });
   if (best) return best;
 
-  // Pass 2: looser substring fallback (catches typos / slightly different
-  // phrasing that Pass 1's word-boundary matching would miss entirely).
+  // Pass 2: looser substring fallback
   knowledgeBase.forEach(function (intent) {
     var score = 0;
     intent.keywords.forEach(function (kw) {
@@ -79,8 +80,6 @@ function findBestIntent(userText, knowledgeBase) {
 
 /**
  * Simple ROT13 encoding/decoding for light obfuscation of contact info
- * This deters simple email scrapers and page-source harvesters but is not cryptographically secure
- * Used for email and phone numbers to reduce spam/robocalls from automated collection
  * @param {string} s - The string to encode/decode
  * @returns {string} - The ROT13 result
  */
@@ -92,7 +91,6 @@ function rot13(s) {
 
 /**
  * Obfuscate contact information for storage in page source
- * Use rot13 on email and phone to prevent simple email/phone scrapers
  * @param {string} email - Plain email address
  * @param {string} phone - Plain phone number
  * @returns {Object} - Object with obfuscated email and phone
@@ -106,7 +104,6 @@ function obfuscateContact(email, phone) {
 
 /**
  * Deobfuscate contact information at runtime
- * Decodes rot13 email/phone only when needed for display
  * @param {string} obfuscatedEmail - ROT13-encoded email
  * @param {string} obfuscatedPhone - ROT13-encoded phone
  * @returns {Object} - Object with decoded email and phone
